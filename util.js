@@ -3,10 +3,13 @@
 //===========================================================
 
 function arange() {
-  // return an array of evenly spaced values (python-like)
-  // (see also: linspace, which is matlab-like)
+  // return an array of evenly spaced values
   // usage: arange([start,] stop, [step])
-  // values are generated in the half open interval [start, stop)
+  // values are generated in [start, stop)
+  // examples:
+  // arange(6) returns [0, 1, 2, 3, 4, 5]
+  // arange(6, 10) returns [6, 7, 8, 9]
+  // arange(0, 2, 0.5) returns [0, 0.5, 1.0, 1.5]
 
   let args = arguments;
   let nargs = args.length;
@@ -74,16 +77,25 @@ function hist(data, bins) {
   };
 }
 
-function linspace(x1, x2, n = 100) {
-  // return an array of n evenly spaced values (matlab-like)
-  // (see also: arange, which is python-like)
-  //
-  // usage: linspace(x1, x2, [n=100])
-  // values are generated in the half open interval [start, stop)
+function linspace(x1, x2, n = 50, endpt = true) {
+  // return an array of n evenly spaced values
+  // usage: linspace(x1, x2, [n=50], [endpt=true])
+  // by default the endpt is included, values in [start, stop]
+  // call with endpt = false to exclude endpoint
+  // examples: 
+  // linspace(0, 5, 5) returns [0, 1.25, 2.5, 3.75, 5.0]
+  // linspace(0, 5, 6) returns [0, 1, 2, 3, 4, 5]
+  // linspace(0, 5, 5, false) returns [0, 1, 2, 3, 4]
 
   let a = [];
-  if (n < 2) throw new Error('linspace: invalid n');
-  let step = (x2 - x1) / (n - 1);
-  for (let i = 0; i < n; i++) a.push(x1 + i * step);
+  if (endpt) {
+    if (n < 2) throw new Error('linspace: invalid n');
+    let step = (x2 - x1) / (n - 1);
+    for (let i = 0; i <= (n-1); i++)a.push(x1 + i * step);
+  } else {
+    if (n < 1) throw new Error('linspace: invalid n');
+    let step = (x2 - x1) / n;
+    for (let i = 0; i < n; i++) a.push(x1 + i * step);
+  }
   return a;
 }
