@@ -42,9 +42,8 @@ function assert(condition, message) {
   }
 }
 
-function f2t(x, places) {
+function f2t(x, places = 2) {
   // float to text conversion
-  if (arguments.length === 1) places = 2;
   let power10 = Math.pow(10, places);
   return '' + Math.round(x * power10) / power10;
 }
