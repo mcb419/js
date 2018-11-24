@@ -5,7 +5,7 @@
 The following are implemented
 - **figure(num, [opts])** set current figure, creates it if it does not exist (num=1,2,...)<br>
 looks for (or creates) \<canvas id="fig1"\> tag in html<br>
-example opts: {width: 600px, height: 400px, bgcolor: lightGreen}
+example opts: {width: 600px, height: 400px, bgcolor: 'lightCyan'}
 - **gca**  global variable, current axis (javascript object)
 - **gcf**  global variable, fig id (string matching id of canvas: "fig1", "fig2", etc.)
 - **plot([xdata,], ydata, [style])** - plots the data<br> 
