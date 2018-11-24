@@ -1,13 +1,17 @@
 # MCB 419 javascript files
 
-<h3><a href="https://mcb419.github.io/js/mplot.js">mplot.js</a> - simple matlab-like plotting</h3>
-- figure
-- gcf, gca
-- plot
-- xlabel, ylabel
-- xlim, ylim
-- xticks, yticks
-- onclick functionality
+<h3><a href="https://mcb419.github.io/js/mplot.js">mplot.js</a> - provides some matlab-like plotting capabilities</h3>
+
+The following are implemented
+- **figure(num)** set current figure, creates it if it does not exist (num=1,2,...)
+- **gca**  global variable current axis
+- **gcf**  global variable, fig id (string matching id of canvas: "fig1", "fig2", etc.)
+- **plot([xdata,], ydata, [style])** - plots the data, 
+style examples: 'b-' (blue line), 'ro-' (red line with open points), 'k|' (black bars)
+- **xlabel, ylabel(text)**  dd axis labels
+- **xlim, ylim(min, max)** set axis limits; also ylim([min, max])
+- **xticks, yticks(min, max, step)** sets ticks and turns off autoranging
+- **gca.onclick** method for click functionality
 
 <h3><a href="https://mcb419.github.io/js/rand.js">rand.js</a> - a seedable random number generator</h3>
 
