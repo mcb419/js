@@ -1,4 +1,4 @@
-# MCB 419 javascript files
+# MCB 419 javascript libraries
 
 If needed for your MCB 419 assignment or project, you can include the libraries listed below by adding them to your html header like this:
 
@@ -10,7 +10,9 @@ If needed for your MCB 419 assignment or project, you can include the libraries 
 </head>
 ```
 
-You just need to change the filename (e.g., util.js), everything else stays the same.
+You need to add a separate line for each library that you want to include; just edit the filename (e.g., util.js), everything else stays the same.
+
+Here are the libraries that you can choose from:
 
 <div style="background-color: gainsboro">
 <h3><a href="https://mcb419.github.io/js/convnet.js">convnet.js</a> - convolution neural networks</h3>
