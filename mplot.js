@@ -13,7 +13,7 @@ if(!assert) {
       message = message || 'assertion failed';
       throw new Error(message);
     }
-  }
+  };
 }
 
 function eventClick(e) {
@@ -39,7 +39,7 @@ function eventClick(e) {
   if (x < ax.xpad.left || x > W - ax.xpad.right ||
     y < ax.ypad.top || y > H - ax.ypad.bottom) {
     console.log('clicked outside of axis');
-    return
+    return;
   }
 
   // transform canvas coords to data coords
@@ -81,7 +81,7 @@ function figure(figNum, opts) {
     //add an axis if it doesn't already exist
     if (!cnv.axis) cnv.axis = new Axis(cnv, opts);
   }
-  cnv.addEventListener('click', eventClick, false)
+  cnv.addEventListener('click', eventClick, false);
   gcf = cnv.id;
   gca = cnv.axis;
 }
@@ -175,7 +175,7 @@ function xticks(xmin, xmax, xstep) {
   if (arguments[0] === 'auto') {
     gca.xtickMode = 'auto';
   } else {
-    gca.xtickMode = 'manual'
+    gca.xtickMode = 'manual';
     gca.xticks = {
       min: xmin,
       max: xmax,
@@ -190,7 +190,7 @@ function yticks(ymin, ymax, ystep) {
   if (arguments[0] === 'auto') {
     gca.ytickMode = 'auto';
   } else {
-    gca.ytickMode = 'manual'
+    gca.ytickMode = 'manual';
     gca.yticks = {
       min: ymin,
       max: ymax,
@@ -220,7 +220,7 @@ class Axis {
     this.xpad = {
       left: 40,
       right: 10
-    }
+    };
     this.xtickMode = 'auto'; // 'auto' (default) or 'manual'
     this.xticks = {
       min: 0,
@@ -249,7 +249,7 @@ class Axis {
       min: 0,
       max: 1,
       step: 0.25
-    }
+    };
     if (vmin === vmax) {
       let vfloor = Math.floor(vmin);
       let vceil = Math.ceil(vmin);
@@ -257,12 +257,12 @@ class Axis {
         min: vfloor,
         max: vceil,
         step: 0.25
-      }
+      };
       else return {
         min: vfloor - 0.5,
         max: vfloor + 0.5,
         step: 0.25
-      }
+      };
     }
     let tickStep = (vmax - vmin) / (ntry - 1);
     let mag = Math.pow(10, Math.floor(Math.log10(tickStep)));
@@ -355,7 +355,7 @@ class Axis {
     let f2t = (x) => '' + Math.round(x * 100) / 100;
 
     ctx.beginPath();
-    ctx.textAlign = "center"
+    ctx.textAlign = "center";
 
     // xticks
     let eps = 1e-6;
@@ -366,21 +366,21 @@ class Axis {
       ctx.lineTo(xpos, this.ypad.top + gHeight);
       ctx.fillText(f2t(xdat), xpos, this.ypad.top + gHeight + 15);
       xdat += this.xticks.step;
-    } while (xdat <= this.xticks.max + eps)
+    } while (xdat <= this.xticks.max + eps);
 
     // xlabel
     ctx.fillText(this.xlabel, this.xpad.left + gWidth / 2, H - 10);
 
     // yticks
     ctx.textAlign = "end";
-    var ydat = this.yticks.min
+    var ydat = this.yticks.min;
     do {
       let ypos = ty(ydat);
       ctx.moveTo(this.xpad.left, ypos);
       ctx.lineTo(W - this.xpad.right, ypos);
       ctx.fillText(f2t(ydat), this.xpad.left - 5, ypos);
       ydat += this.yticks.step;
-    } while (ydat <= this.yticks.max + eps)
+    } while (ydat <= this.yticks.max + eps);
 
     // ylabel
     ctx.save();
@@ -407,8 +407,8 @@ class Axis {
       // examples "b-", "b.-", "bo-", etc. (like matlab)
       // NEW: 'b|' draws vertical bar graph (useful for histograms)
       let nchar = tr.style.length;
-      let drawBars = tr.style[nchar - 1] === '|' || tr.style[nchar - 2] === '|'
-      let drawLine = tr.style[nchar - 1] === '-' || tr.style[nchar - 2] === '-'
+      let drawBars = tr.style[nchar - 1] === '|' || tr.style[nchar - 2] === '|';
+      let drawLine = tr.style[nchar - 1] === '-' || tr.style[nchar - 2] === '-';
       let drawPts = tr.ydat.length === 1 || (tr.style[1] !== '-' && tr.style[1] !== '|');
 
       //------------------------
@@ -461,11 +461,11 @@ class Axis {
       // TODO: add support for different point styles
       if (drawPts) {
         // define point style
-        var drawpt = function(x, y) {
+        var drawpt = function(x, y) {   //jshint ignore:line
           ctx.fillRect(x - 1, y - 1, 3, 3);
         };
         if (tr.style[1] === 'o') {
-          drawpt = function(x, y) {
+          drawpt = function(x, y) {  //jshint ignore:line
             ctx.beginPath();
             ctx.arc(x, y, 3, 0, 2 * Math.PI);
             ctx.stroke();

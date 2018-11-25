@@ -46,11 +46,11 @@ var _lcg = new LCG();
 var _isSeeded = false;
 var rand = function() {
   return _isSeeded ? _lcg.next() : Math.random();
-}
-var isSeeded = function() {return _isSeeded;}
+};
+var isSeeded = function() {return _isSeeded;};
 var unseed = function() {
   _isSeeded = false;
-}
+};
 var seed = function(val) {
   if (val == null) {
     return _lcg.seed; // return the current seed
@@ -58,7 +58,7 @@ var seed = function(val) {
     _isSeeded = true;
     _lcg.seed = val;
   }
-}
+};
 
 function randi(a, b) {
   // randi() returns 0 or 1
