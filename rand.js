@@ -1,5 +1,12 @@
 
-(function (global) {
+//=================================================================
+// rand.js: LGC, rand, seed, unseed, isSeeded, randi, randf, randn
+//==================================================================
+
+/* global exports */
+
+(function (target) { // target is 'window' (browser) or 'exports' (node.js)
+
   class LCG {
     // seedable pseudo-random number generation
     // https://en.wikipedia.org/wiki/Linear_congruential_generator
@@ -95,14 +102,14 @@
     return u * c * std;
   }
   
-  // exports
-  global.LCG = LCG;
-  global.rand = rand;
-  global.randi = randi;
-  global.randf = randf;
-  global.randn = randn;
-  global.seed = seed;
-  global.unseed = unseed;
-  global.isSeeded = isSeeded;
+  // target is "window" or "exports" 
+  target.LCG = LCG;
+  target.rand = rand;
+  target.seed = seed;
+  target.unseed = unseed;
+  target.isSeeded = isSeeded;
+  target.randi = randi;
+  target.randf = randf;
+  target.randn = randn;
 
-})(this);
+})(typeof window !== 'undefined' ? window : exports); // browser or node.js
