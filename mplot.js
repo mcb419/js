@@ -6,18 +6,22 @@
 
 /* global exports */
 
-(function (target) { // target is 'window' (browser) or 'exports' (node.js)
-  var gcf; // global variable, current figure id, eg. "fig1"
-  var gca; // global variable, current axis
+if (!assert) {
+  var assert = function (condition, message) {
+    if (!condition) {
+      message = message || 'assertion failed';
+      throw new Error(message);
+    }
+  };
+}
 
-  if (!assert) {
-    var assert = function (condition, message) {
-      if (!condition) {
-        message = message || 'assertion failed';
-        throw new Error(message);
-      }
-    };
-  }
+(function (target) { // target is 'window' (browser) or 'exports' (node.js)
+  
+  var cf;  // current figure  id, eg. "fig1"
+  var gcf = () => (cf); // get current figure id, eg. "fig1"
+  
+  var ca;  // current axis
+  var gca = () => (ca); // get current axis
 
   function eventClick(e) {
 
@@ -85,8 +89,8 @@
       if (!cnv.axis) cnv.axis = new Axis(cnv, opts);
     }
     cnv.addEventListener('click', eventClick, false);
-    gcf = cnv.id;
-    gca = cnv.axis;
+    cf = cnv.id;
+    ca = cnv.axis;
   }
 
   function gfill(colorName) {
@@ -101,7 +105,7 @@
       i: 'indigo',
       k: 'black'
     };
-    let ctx = gca.cnv.getContext('2d');
+    let ctx = gca().cnv.getContext('2d');
     if (arguments[0].length === 1) {
       // single letter
       ctx.fillStyle = styles[arguments[0]];
@@ -112,7 +116,7 @@
 
   function gtext(str, x, y, colorName, fontSize) {
 
-    let ctx = gca.cnv.getContext('2d');
+    let ctx = ca.cnv.getContext('2d');
 
     if (colorName) gfill(colorName);
 
@@ -122,37 +126,37 @@
       ctx.font = '12px sans-serif';
     }
 
-    let gWidth = gca.cnv.width - gca.xpad.left - gca.xpad.right;
-    let gHeight = gca.cnv.height - gca.ypad.bottom - gca.ypad.top;
+    let gWidth = ca.cnv.width - ca.xpad.left - ca.xpad.right;
+    let gHeight = ca.cnv.height - ca.ypad.bottom - ca.ypad.top;
 
     // tranformations from data coordinates to screen coordinates
-    let tx = (x) => gca.xpad.left + (x - gca.xticks.min) / (gca.xticks.max - gca.xticks.min) * gWidth;
-    let ty = (y) => gca.cnv.height - gca.ypad.bottom - (y - gca.yticks.min) / (gca.yticks.max - gca.yticks.min) * gHeight;
+    let tx = (x) => ca.xpad.left + (x - ca.xticks.min) / (ca.xticks.max - ca.xticks.min) * gWidth;
+    let ty = (y) => ca.cnv.height - ca.ypad.bottom - (y - ca.yticks.min) / (ca.yticks.max - ca.yticks.min) * gHeight;
 
     ctx.textAlign = 'left';
     ctx.fillText(str, tx(x), ty(y));
   }
 
   function plot() {
-    if (!gcf) figure(1);
+    if (!cf) figure(1);
     let tr = new Trace(...arguments);
-    gca.traces.push(tr);
-    gca.draw();
+    ca.traces.push(tr);
+    ca.draw();
   }
 
   function clf() {
-    gca.traces = [];
-    gca.draw();
+    ca.traces = [];
+    ca.draw();
   }
 
   function xlabel(str) {
-    gca.xlabel = str;
-    gca.draw();
+    ca.xlabel = str;
+    ca.draw();
   }
 
   function ylabel(str) {
-    gca.ylabel = str;
-    gca.draw();
+    ca.ylabel = str;
+    ca.draw();
   }
 
   function xlim(xmin, xmax) {
@@ -176,31 +180,31 @@
   function xticks(xmin, xmax, xstep) {
     if (!xstep) xstep = (xmax - xmin) / 5;
     if (arguments[0] === 'auto') {
-      gca.xtickMode = 'auto';
+      ca.xtickMode = 'auto';
     } else {
-      gca.xtickMode = 'manual';
-      gca.xticks = {
+      ca.xtickMode = 'manual';
+      ca.xticks = {
         min: xmin,
         max: xmax,
         step: xstep
       };
     }
-    gca.draw();
+    ca.draw();
   }
 
   function yticks(ymin, ymax, ystep) {
     if (!ystep) ystep = (ymax - ymin) / 5;
     if (arguments[0] === 'auto') {
-      gca.ytickMode = 'auto';
+      ca.ytickMode = 'auto';
     } else {
-      gca.ytickMode = 'manual';
-      gca.yticks = {
+      ca.ytickMode = 'manual';
+      ca.yticks = {
         min: ymin,
         max: ymax,
         step: ystep
       };
     }
-    gca.draw();
+    ca.draw();
   }
 
   //==================================================================
@@ -612,3 +616,4 @@
   target.yticks = yticks;
 
 })(typeof window !== 'undefined' ? window : exports); // browser or node.js
+
