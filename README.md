@@ -47,7 +47,7 @@ style examples: 'b-' (blue line), 'ro-' (red line with open points), 'k|' (black
 uses [LCG algorithm](https://en.wikipedia.org/wiki/Linear_congruential_generator)
 if the user specifies a seed, uses Math.random() otherwise
 
-[demo - histogram random numbers]('./rand_demo.html')
+[demo - histogram random numbers](rand_demo.html)
 
 - **randi(a, b)** returns random integers in [a, b) 
 - **randf(a, b)** returns random floats in [a, b) 
