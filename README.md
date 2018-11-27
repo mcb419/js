@@ -45,8 +45,9 @@ style examples: 'b-' (blue line), 'ro-' (red line with open points), 'k|' (black
 </div>
 
 uses [LCG algorithm](https://en.wikipedia.org/wiki/Linear_congruential_generator)
-if the user specifies a seed, uses Math.random() otherwise<br>
-[simple demo with histograms]('./rand_demo.html')
+if the user specifies a seed, uses Math.random() otherwise
+
+[demo - histogram random numbers]('./rand_demo.html')
 
 - **randi(a, b)** returns random integers in [a, b) 
 - **randf(a, b)** returns random floats in [a, b) 
@@ -62,7 +63,8 @@ if the user specifies a seed, uses Math.random() otherwise<br>
 </div>
 
 library for building and training recurrent neural nets (RNNs and LSTMs)
-by Andrej Karpathy<br>
+by Andrej Karpathy
+
 [demos and documentation](https://github.com/karpathy/recurrentjs)
 
 
@@ -70,7 +72,8 @@ by Andrej Karpathy<br>
 <h3><a href="https://mcb419.github.io/js/sprintf.js">sprintf.js</a> - formatted output</h3>
 </div>
 
-javascript version of sprintf for generating formatted output<br>
+javascript version of sprintf for generating formatted output
+
 [documentation](https://www.npmjs.com/package/sprintf-js)
 
 
