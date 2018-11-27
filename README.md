@@ -1,6 +1,6 @@
 # MCB 419 javascript libraries
 
-If needed for your MCB 419 assignment or project, you can include the libraries listed below by adding them to your html header like this:
+If needed for your MCB 419 assignment, you can include the libraries listed below by adding them to your html header like this:
 
 ```html
 <head>
@@ -44,8 +44,10 @@ style examples: 'b-' (blue line), 'ro-' (red line with open points), 'k|' (black
 <h3><a href="https://mcb419.github.io/js/rand.js">rand.js</a> - a seedable random number generator</h3>
 </div>
 
-uses [LCG algorithm](https://en.wikipedia.org/wiki/Linear_congruential_generator)
-if the user specifies a seed, uses Math.random() otherwise
+(NOTE: you won't need rand.js if you're using the P5 library, which has it's own random number generator)
+
+rand.js uses the [LCG algorithm](https://en.wikipedia.org/wiki/Linear_congruential_generator)
+if the user specifies a seed, and uses Math.random() otherwise
 
 [demo - histogram random numbers](rand_demo.html)
 
