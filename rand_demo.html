@@ -19,6 +19,11 @@
       margin: 10px;
     }
 
+    td {
+    min-width: 400px
+      
+    }
+
     #wrap {
       padding: 10px;
       width: 800px;
@@ -62,13 +67,51 @@
 <body onload="setup()">
   <div id="wrap">
     <h2>Generating random numbers using rand.js</h2>
-    <h3>fig1: randn(3) - random Gaussian</h3>
+    View the page source for details.
+    <table>
+    <tr>
+    <td>
+    <pre>
+      figure(1);
+      for (i = 0; i < N; i++) y[i] = <b>randn(3)</b>;
+      let bins = linspace(-10, 10);
+      result = hist(y, bins);
+      plot(result.bins, result.counts, 'b|');
+      xlabel('value');
+      ylabel('count');
+    </pre>
+    </td><td>
     <canvas id="fig1" width="400" height="300"></canvas>
-    <h3>fig2: randi(0,5) - random integers</h3>
+    </td></tr>
+    <tr>
+    <td>
+    <pre>
+      figure(2);
+      for (i = 0; i < N; i++)y[i] = <b>randi(0, 5)</b>;
+      bins = linspace(-1, 5);
+      result = hist(y, bins);
+      plot(result.bins, result.counts, 'g|');
+      xlabel('value');
+      ylabel('count');
+    </pre>
+    </td><td>
     <canvas id="fig2" width="400" height="300"></canvas>
-    <h3>fig3: randf(0,5) - random floats</h3>
+    </td></tr>
+    <tr>
+    <td>
+    <pre>
+      figure(3);
+      for (i = 0; i < N; i++)y[i] = <b>randf(0, 5)</b>;
+      bins = linspace(-1, 6);
+      result = hist(y, bins);
+      plot(result.bins, result.counts, 'm|');
+      xlabel('value');
+      ylabel('count');
+    </pre>
+    </td><td>
     <canvas id="fig3" width="400" height="300"></canvas>
+    </td></tr>
+    </table>
   </div>
 </body>
-
 </html>
