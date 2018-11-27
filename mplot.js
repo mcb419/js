@@ -16,10 +16,10 @@ if (!assert) {
 }
 
 (function (target) { // target is 'window' (browser) or 'exports' (node.js)
-  
+
   var cf;  // current figure  id, eg. "fig1"
   var gcf = () => (cf); // get current figure id, eg. "fig1"
-  
+
   var ca;  // current axis
   var gca = () => (ca); // get current axis
 
@@ -61,16 +61,28 @@ if (!assert) {
 
   }
 
-  function figure(figNum, opts) {
+  function figure(fid, opts) {
+
+    var id; // id of the drawing canvas
 
     // options: 
-    // handled by Canvas: opts.width, opts.height, 
-    // passed to Axis object: opts.bgcolor
+    //   handled by this code: opts.width, opts.height, 
+    //   passed to Axis object: opts.bgcolor
     opts = opts || {};
 
-    // figNum is an integer 1, 2, ,...
+    // if fid is a number (1, 2, ...) then id becomes "fig1", "fig2", ...
+    // if fid is a string, it is the id of an existing canvas
+    // if fid has a leading # (like a css selector), the # is removed
+    if (typeof fid === 'number') {
+      id = 'fig' + fid;
+    } else if (typeof fid === 'string') {
+      // strip leading #, if present
+      id = (fid[0]==='#') ? fid.slice(1) : fid;
+    } else {
+      throw new Error('unrecognized figure id')
+    }
+
     // looks for the corresponding canvas id as "fig1", "fig2", ...
-    var id = 'fig' + figNum;
     var cnv = document.getElementById(id);
 
     // if canvas with this id is not found, create one
