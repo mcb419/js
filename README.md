@@ -44,9 +44,14 @@ style examples: 'b-' (blue line), 'ro-' (red line with open points), 'k|' (black
 <h3><a href="https://mcb419.github.io/js/rand.js">rand.js</a> - a seedable random number generator</h3>
 </div>
 
-uses LCG if the user specifies a seed, otherwise uses Math.random (faster)
+uses [LCG algorithm](https://en.wikipedia.org/wiki/Linear_congruential_generator)
+if the user specifies a seed, uses Math.random() otherwise<br>
+[simple demo with histograms]('./rand_demo.html')
 
-- **rand()**     return uniform random number in [0, 1)
+- **randi(a, b)** returns random integers in [a, b) 
+- **randf(a, b)** returns random floats in [a, b) 
+- **randn(std=1)** returns normally distributed numbers
+- **rand()** returns random floats in [0, 1) 
 - **seed(val)**  sets the seed and starts using LCG algorithm
 - **seed()**     returns the current seed value
 - **unseed()**   switches back to unseeded mode, starts using Math.random();
