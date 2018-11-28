@@ -26,6 +26,10 @@ by Andrej Karpathy<br>
 <h3><a href="https://mcb419.github.io/js/mplot.js">mplot.js</a> - some simple matlab-like plotting capabilities</h3>
 </div>
 
+[demo - general mplot functionality](demos/mplot_demo.html)  
+[demo - histogramming](demos/rand_demo.html)
+
+
 The following are implemented
 - **figure(num, [opts])** set current figure, creates it if it does not exist (num=1,2,...)<br>
 looks for (or creates) \<canvas id="fig1"\> tag in html<br>

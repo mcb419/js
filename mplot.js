@@ -35,8 +35,14 @@ if (!assert) {
       x = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
       y = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
     }
-    x -= this.offsetLeft;
-    y -= this.offsetTop;
+
+    // loop through offsets, including parent elemtns
+    var a = this;
+    while(a) {
+      x -= a.offsetLeft;
+      y -= a.offsetTop;
+      a = a.offsetParent;
+    }
 
     // check if click is within axis limits
 
@@ -55,6 +61,9 @@ if (!assert) {
 
     let py = (H - ax.ypad.bottom - y) / (H - ax.ypad.bottom - ax.ypad.top);
     let dataY = ax.yticks.min + py * (ax.yticks.max - ax.yticks.min);
+
+    // make this the current figure
+    figure(this.id);
 
     //call user-defined callback
     ax.onclick(dataX, dataY);
@@ -238,7 +247,7 @@ if (!assert) {
       this.xlabel = 'xlabel';
       this.xpad = {
         left: 40,
-        right: 10
+        right: 15
       };
       this.xtickMode = 'auto'; // 'auto' (default) or 'manual'
       this.xticks = {
@@ -331,8 +340,8 @@ if (!assert) {
       ctx.fillRect(0, 0, W, H);
 
       // draw guidelines and values
-      ctx.fillStyle = '#777';
-      ctx.strokeStyle = '#777';
+      ctx.fillStyle = 'gray';
+      ctx.strokeStyle = 'gray';
       ctx.font = '11px Arial';
 
       // get axes limits and ticks based on trace info
