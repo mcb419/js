@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <script src="../mplot.js"></script>
+  <script src="../rand.js"></script>
+  <script src="../util.js"></script>
+  <title>Random numbers</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      margin-bottom: 200px;
+      width: 800px;
+    }
+
+    canvas {
+      border: 1px solid gainsboro;
+      display: block;
+      margin: 10px;
+    }
+
+    h1, h2, h3, h4 {
+      background-color: gainsboro;
+      margin-right: 10px;
+      padding: 5px;
+    }
+
+
+    textarea {
+      display: block;
+      font-size: 14px;
+      margin-right: 10px;
+      padding: 10px;
+    }
+
+    td {
+      vertical-align: top;
+    }
+  </style>
+
+  <script>
+    function setup() {
+      var N = 10000;
+      var data = [];
+      var i, bins, result;
+      eval(document.getElementById('text1').value);
+      eval(document.getElementById('text2').value);
+      eval(document.getElementById('text3').value);
+    }
+  </script>
+</head>
+
+<body onload="setup()">
+  <h2>Histogramming random numbers using rand.js and mplot.js</h2>
+  <table>
+    <tr>
+      <td>
+        <h4>randn - normally distributed</h4>
+        <textarea id="text1" rows="8" cols="40" readonly>
+figure(1);
+for (i = 0; i < N; i++) data[i] = randn(3);
+bins = linspace(-10, 10, 40);
+result = hist(data, bins);
+plot(bins, result.counts, 'b|');
+xlabel('value');
+ylabel('count');
+      </textarea>
+      </td>
+      <td>
+        <canvas id="fig1" width="400" height="300"></canvas>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <h4>randi - random integers</h4>
+        <textarea id="text2" rows="8" cols="40" readonly>
+figure(2);
+for (i = 0; i < N; i++) data[i] = randi(0, 5);
+bins = linspace(-1, 5);
+result = hist(data, bins);
+plot(bins, result.counts, 'g|');
+xlabel('value');
+ylabel('count');
+      </textarea>
+      </td>
+      <td>
+        <canvas id="fig2" width="400" height="300"></canvas>
+      </td>
+    </tr>
+
+    <tr>
+      <td>
+        <h4>randf - random floats</h4>
+        <textarea id="text3" rows="8" cols="40" readonly>
+figure(3);
+for (i = 0; i < N; i++) data[i] = randf(0, 5);
+bins = linspace(-1, 6);
+result = hist(data, bins);
+plot(bins, result.counts, 'm|');
+xlabel('value');
+ylabel('count');
+      </textarea>
+      </td>
+      <td>
+        <canvas id="fig3" width="400" height="300"></canvas>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>
