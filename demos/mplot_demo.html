@@ -14,7 +14,7 @@
       font-family: Arial, sans-serif;
       margin: 20px;
       margin-bottom: 200px;
-      width: 800px;
+      width: 850px;
     }
 
     canvas {
@@ -63,7 +63,7 @@
     <tr>
       <td>
         <h4>basic x,y plotting - lines, points, text</h4>
-        <textarea id="text1" rows="12" cols="40" readonly>
+        <textarea id="text1" rows="12" cols="45" readonly>
 figure(1);
 x = linspace(-3, 3, 40);
 y1 = x.map(x => x * x);
@@ -85,9 +85,9 @@ gtext('sine', 1.2, 4.4, 'r');
     <tr>
       <td>
         <h4>indexed data (no x values)</h4>
-        <textarea id="text2" rows="6" cols="40" readonly>
+        <textarea id="text2" rows="7" cols="45" readonly>
 figure(2, {height:200, bgcolor:'lightCyan'});
-y1 = arange(100).map(j => randf(-j, j));
+y1 = arange(100).map(i => randf(-i, i));
 plot(y1, 'go-'); 
 xlabel('index');
 ylabel('value');      
@@ -102,14 +102,14 @@ yticks(-100, 100, 25);
     <tr>
       <td>
         <h4>bar graphs for histograms</h4>
-        <textarea id="text3" rows="10" cols="40" readonly>
+        <textarea id="text3" rows="10" cols="45" readonly>
 figure(3, {bgcolor: 'lavender'});
 data = arange(1000).map(() => randn());
 bins = arange(-3, 3, 0.5);
 result = hist(data, bins);
 plot(bins, result.counts, 'b|');
 xticks(-3, 3, 0.5);
-ylim(0, gca().yticks.max);
+ylim(0, gca().yticks.max); // force zero
 xlabel('value');
 ylabel('counts');      
 </textarea>
@@ -122,7 +122,7 @@ ylabel('counts');
     <tr>
       <td>
         <h4>click functionality</h4>
-        <textarea id="text4" rows="10" cols="40" readonly>
+        <textarea id="text4" rows="10" cols="45" readonly>
 figure(4);
 xlim(0, 10);
 ylim(0, 10);
