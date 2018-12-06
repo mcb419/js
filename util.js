@@ -1,19 +1,17 @@
 //===========================================================
-// util.js: arange, assert, f2t, hist, linspace
+// util.js: arange, assert, f2t, hist, linspace, select
 //===========================================================
 
 /* global exports */
 
-(function (target) { // target is 'window' (browser) or 'exports' (node.js)
+(function (e) { // target is 'window' (browser) or 'exports' (node.js)
 
-  function arange() {
+  'use strict';
+
+  e.arange = function () {
     // return an array of evenly spaced values
     // usage: arange([start,] stop, [step])
     // values are generated in [start, stop)
-    // examples:
-    // arange(6) returns [0, 1, 2, 3, 4, 5]
-    // arange(6, 10) returns [6, 7, 8, 9]
-    // arange(0, 2, 0.5) returns [0, 0.5, 1.0, 1.5]
 
     let args = arguments;
     let nargs = args.length;
@@ -38,22 +36,22 @@
     let a = [];
     for (let i = start; i < stop; i += step) a.push(i);
     return a;
-  }
+  };
 
-  function assert(condition, message) {
+  e.assert = function (condition, message) {
     if (!condition) {
       message = message || 'Assertion failed';
       throw new Error(message);
     }
-  }
+  };
 
-  function f2t(x, places = 2) {
+  e.f2t = function (x, places = 2) {
     // float to text conversion
     let power10 = Math.pow(10, places);
     return '' + Math.round(x * power10) / power10;
-  }
+  };
 
-  function hist(data, bins) {
+  e.hist = function (data, bins) {
     // data is an array of data points
     // bins is an array of lower bin edges, equally spaced
     let underflow = 0;
@@ -79,9 +77,9 @@
       underflow,
       overflow
     };
-  }
+  };
 
-  function linspace(x1, x2, n = 50, endpt = true) {
+  e.linspace = function (x1, x2, n = 50, endpt = true) {
     // return an array of n evenly spaced values
     // usage: linspace(x1, x2, [n=50], [endpt=true])
     // by default the endpt is included, values in [start, stop]
@@ -102,11 +100,13 @@
       for (let i = 0; i < n; i++) a.push(x1 + i * step);
     }
     return a;
-  }
-  target.arange = arange;
-  target.assert = assert;
-  target.f2t = f2t;
-  target.hist = hist;
-  target.linspace = linspace;
+  };
+
+  e.select = function (id) {
+    if (id[0] === '#') id = id.slice(1);
+    let element = document.getElementById(id);
+    if (!element) throw new Error('could not find ' + id);
+    return element;
+  };
 
 })(typeof window !== 'undefined' ? window : exports); // browser or node.js
