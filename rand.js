@@ -1,11 +1,13 @@
 
-//=================================================================
-// rand.js: LGC, rand, seed, unseed, isSeeded, randi, randf, randn
-//==================================================================
+//=========================================================================
+// rand.js: LGC, rand, seed, unseed, isSeeded, randi, randf, randn, random
+//=========================================================================
 
 /* global exports */
 
-(function (target) { // target is 'window' (browser) or 'exports' (node.js)
+(function (e) { // e is 'window' (browser) or 'exports' (node.js)
+
+  'use strict';
 
   class LCG {
     // seedable pseudo-random number generation
@@ -50,14 +52,13 @@
 
   var _lcg = new LCG();
   var _isSeeded = false;
-  var rand = function () {
+
+  e.rand = function () {
     return _isSeeded ? _lcg.next() : Math.random();
   };
-  var isSeeded = function () { return _isSeeded; };
-  var unseed = function () {
-    _isSeeded = false;
-  };
-  var seed = function (val) {
+  e.isSeeded = function () { return _isSeeded; };
+  e.unseed = function () { _isSeeded = false; };
+  e.seed = function (val) {
     if (val == null) {
       return _lcg.seed; // return the current seed
     } else {
@@ -66,25 +67,22 @@
     }
   };
 
-  function randi(a, b) {
+  e.randi = function(a, b) {
     // randi() returns 0 or 1
     // randi(a) returns random interger in [0, a)
     // randi(a, b) return random integers in [a, b)
     if (a == null) return Math.floor(2 * rand()); // 0 or 1
     if (b == null) return Math.floor(a * rand());
     return Math.floor(a + (b - a) * rand());
-  }
+  };
 
-  function randf(a, b) {
-    // randf() returns a random float in [0, 1)
-    // randf(a) returns a random float in [0, a)
-    // randf(a, b) returns a random float in [a, b)
-    if (a == null) return rand();
-    if (b == null) return a * rand();
-    return a + (b - a) * rand();
-  }
+  e.randf = function(a, b) {
+    if (b) return a + (b - a) * e.rand();
+    if (!a) return e.rand();
+    return a * e.rand();
+  };
 
-  function randn(std) {
+  e.randn = function(std) {
     // randn() returns random gaussian with mean 0, std 1
     // randn(std) returns zero-mean random gaussian with std
     if (std == null) std = 1.0;
@@ -100,16 +98,15 @@
     this.cachedValue = v * c * std; // cache this
     this.cached = true;
     return u * c * std;
-  }
-  
-  // target is "window" or "exports" 
-  target.LCG = LCG;
-  target.rand = rand;
-  target.seed = seed;
-  target.unseed = unseed;
-  target.isSeeded = isSeeded;
-  target.randi = randi;
-  target.randf = randf;
-  target.randn = randn;
+  };
+
+  e.random = function (a, b) {
+    if (b) return a + (b - a) * e.rand();
+    if (!a) return e.rand();
+    if (Array.isArray(a)) { // pick one
+      return a[ e.randi(a.length) ];
+    }
+    return a * e.rand();
+  };
 
 })(typeof window !== 'undefined' ? window : exports); // browser or node.js
