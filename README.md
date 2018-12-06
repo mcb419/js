@@ -20,7 +20,8 @@ Here are the libraries that you can choose from:
 
 library for building and training deep neural nets
 by Andrej Karpathy<br>
-[demos and documentation](https://cs.stanford.edu/people/karpathy/convnetjs/)
+[1d regression demo](demos/convnetjs_1d_regression)  
+[Karpathy demos and docs](https://cs.stanford.edu/people/karpathy/convnetjs/)
 
 <div style="background-color: gainsboro">
 <h3><a href="https://mcb419.github.io/js/mplot.js">mplot.js</a> - some simple matlab-like plotting capabilities</h3>

@@ -1,0 +1,22 @@
+button {
+	height: 25px;
+	margin: 5px 1px;
+  background-color: gainsboro;
+}
+
+canvas {
+  border: 1px solid gainsboro;
+}
+
+#wrap {
+  width: 800px;
+  margin-right: auto;
+  margin-left: 10px;
+  margin-bottom: 100px;
+}
+
+.layerButton {
+  width: 80px;
+  height: 25px;
+  margin: 5px;
+}

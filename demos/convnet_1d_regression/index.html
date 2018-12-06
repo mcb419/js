@@ -1,0 +1,51 @@
+<!DOCTYPE html><html><head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="https://mcb419.github.io/js/convnet.js"></script>
+  <script src="https://mcb419.github.io/js/mplot.js"></script>
+  <script src="https://mcb419.github.io/js/rand.js"></script>
+  <script src="https://mcb419.github.io/js/util.js"></script>
+  <script src="sketch.js"></script>
+</head>
+
+<body>
+  <div id="wrap">
+    <h2>Neural net 1-d regression demo using 
+      <a href="https://cs.stanford.edu/people/karpathy/convnetjs/" target="_blank">convnet.js</a></h2>
+    <p>A neural net is trained 
+      to predict a scalar output value (y) for a given scalar input value (x).   
+      <br>The neural network architecture is specified in the text box below. 
+      <br>Read the <a href="https://cs.stanford.edu/people/karpathy/convnetjs/docs.html" target="_blank">convnetjs documentation</a>
+      for info on how to modify the network and the trainer.
+    </p>
+    <p>This version is adapted for MCB 419. Original version by Andrej Karpathy is
+      <a href="https://cs.stanford.edu/people/karpathy/convnetjs/demo/regression.html" target="_blank"> here</a>.
+    </p>
+
+    <textarea id="specs" style="width:100%; height:160px;">    </textarea>
+    <br>
+    <button onclick="reset()">Reload network</button>
+    <br>
+    <div>
+      # training points: 
+      <input type="text" id="npts" size="4" value="20">
+     <button onclick="regen_data()">Regenerate data</button>
+    </div>
+    <br>
+    <input type="checkbox" name="draw_layer_outputs" id="layer_outs" onchange="draw()"> click checkbox to also show outputs of a particular layer (use buttons below to select layer)
+    <div id="layer_buttons">javascript code will add layer-select buttons here</div>
+    <br>
+    <button onclick="reset()" style="background-color:wheat">Reset</button>
+		<button onclick="run()" style="background-color:lightGreen">Run</button>
+		<button onclick="stop()" style="background-color:pink">Stop</button>
+    <button onclick="singleStep()" style="background-color:lavender">Single Step</button>
+    <br>
+    <div>
+    <canvas id="fig1"></canvas>
+    <canvas id="fig2"></canvas>
+    <canvas id="fig3"></canvas>
+    </div>
+    <div id="canvas"></div> <!-- div for P5 canvas --> 
+  </div>
+
+</body></html>
