@@ -91,7 +91,7 @@ var R = {}; // the Recurrent library
   }
 
   // return Mat but filled with random numbers from gaussian
-  var RandMat = function(n,d,mu,std) {
+  var RandMat = function(n,d,mu=0,std=0.1) {
     var m = new Mat(n, d);
     //fillRandn(m,mu,std);
     fillRand(m,-std,std); // kind of :P
