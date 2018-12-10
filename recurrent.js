@@ -55,12 +55,9 @@ var R = {}; // the Recurrent library
     // n is number of rows d is number of columns
     this.n = n;
     this.d = d;
-    if(vals) {
-      this.load(vals); 
-    } else {
-      this.w = zeros(n * d);
-    }
+    this.w = zeros(n * d);
     this.dw = zeros(n * d);
+    if(vals) this.load(vals); 
   }
   Mat.prototype = {
     load: function (vals) {
