@@ -4,7 +4,7 @@ var R = {}; // the Recurrent library
   "use strict";
 
   // Utility fun
-  var assert = function(condition, message) {
+  function assert(condition, message) {
     // from http://stackoverflow.com/questions/15313418/javascript-assert
     if (!condition) {
       message = message || "Assertion failed";
@@ -67,13 +67,13 @@ var R = {}; // the Recurrent library
       // added by MN Dec 2018
       // quickly load an array of values
       // vals can be flat, or an Array of Arrays 
-      this.assert(Array.isArray(vals), 'vals must be an array');
+      assert(Array.isArray(vals), 'vals must be an array');
       let flat = [].concat(...vals);
       let nvals = flat.length;
-      this.assert(m.n * m.d === nvals, 'element count mismatch');
+      assert(m.n * m.d === nvals, 'element count mismatch');
       // if it's an array of arrays, check for correct dimensions
       if (Array.isArray(vals[0])) {
-        this.assert(m.d === vals[0].length, 'column count mismatch');
+        assert(m.d === vals[0].length, 'column count mismatch');
       }
       for (let i = 0; i < nvals; i++) this.w[i] = flat[i];
     },
