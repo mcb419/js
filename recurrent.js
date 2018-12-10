@@ -65,15 +65,15 @@ var R = {}; // the Recurrent library
   Mat.prototype = {
     load: function (vals) {
       // added by MN Dec 2018
-      // quickly load an array of values
-      // vals can be flat, or an Array of Arrays 
+      // quickly load an array of values into w
+      // vals can be flat, or an array of arrays 
       assert(Array.isArray(vals), 'vals must be an array');
       let flat = [].concat(...vals);
       let nvals = flat.length;
-      assert(m.n * m.d === nvals, 'element count mismatch');
+      assert(this.n * this.d === nvals, 'element count mismatch');
       // if it's an array of arrays, check for correct dimensions
       if (Array.isArray(vals[0])) {
-        assert(m.d === vals[0].length, 'column count mismatch');
+        assert(this.d === vals[0].length, 'column count mismatch');
       }
       for (let i = 0; i < nvals; i++) this.w[i] = flat[i];
     },
