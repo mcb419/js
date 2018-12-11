@@ -20,7 +20,7 @@ Here are the libraries that you can choose from:
 
 library for building and training deep neural nets
 by Andrej Karpathy<br>
-[1d regression demo](demos/convnetjs_1d_regression)  
+[1d regression demo](demos/convnetjs_1d_regression/index.html)  
 [Karpathy demos and docs](https://cs.stanford.edu/people/karpathy/convnetjs/)
 
 <div style="background-color: gainsboro">
