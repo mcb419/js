@@ -37,7 +37,6 @@
       this._seed = val >>> 0;
       this.z = this._seed;
     }
-
   }
 
   // make a random number generator
@@ -82,21 +81,22 @@
     return a * e.rand();
   };
 
+  var _randn = {cached:false, cachedValue: undefined};
   e.randn = function(std) {
     // randn() returns random gaussian with mean 0, std 1
     // randn(std) returns zero-mean random gaussian with std
     if (std == null) std = 1.0;
-    if (this.cached) {
-      this.cached = false;
-      return this.cachedValue;
+    if (_randn.cached) {
+      _randn.cached = false;
+      return _randn.cachedValue;
     }
     let u = 2 * rand() - 1;
     let v = 2 * rand() - 1;
     let r = u * u + v * v;
     if (r === 0 || r > 1) return randn(std);
     let c = Math.sqrt(-2 * Math.log(r) / r);
-    this.cachedValue = v * c * std; // cache this
-    this.cached = true;
+    _randn.cached = true;
+    _randn.cachedValue = v * c * std; // cache 
     return u * c * std;
   };
 
