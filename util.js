@@ -1,5 +1,5 @@
 //===========================================================
-// util.js: arange, assert, f2t, hist, linspace, select
+// util.js: arange, assert, f2t, getElement, hist, linspace
 //===========================================================
 
 /* global exports */
@@ -49,6 +49,13 @@
     // float to text conversion
     let power10 = Math.pow(10, places);
     return '' + Math.round(x * power10) / power10;
+  };
+
+  e.getElement = function (id) {
+    if (id[0] === '#') id = id.slice(1);
+    let element = document.getElementById(id);
+    if (!element) throw new Error('could not find ' + id);
+    return element;
   };
 
   e.hist = function (data, bins) {
@@ -102,11 +109,5 @@
     return a;
   };
 
-  e.select = function (id) {
-    if (id[0] === '#') id = id.slice(1);
-    let element = document.getElementById(id);
-    if (!element) throw new Error('could not find ' + id);
-    return element;
-  };
 
 })(typeof window !== 'undefined' ? window : exports); // browser or node.js
